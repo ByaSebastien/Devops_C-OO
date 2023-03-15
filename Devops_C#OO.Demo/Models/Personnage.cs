@@ -21,13 +21,13 @@ namespace Devops_C_OO.Demo.Models
             }
         }
         public string Name { get; set; }
-        public int Pv { get; set; }
-        public int Force { get; set; }
+        public Stats Stats { get; set; } = new Stats();
+
 
         public void Frapper(Personnage p)
         {
             Console.WriteLine($"{Name} attaque {p.Name}");
-            p.Pv -= Force;
+            p.Stats[StatType.Pv] -= Stats[StatType.Force];
         }
 
     }
