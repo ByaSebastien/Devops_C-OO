@@ -12,11 +12,19 @@ Courant c1 = new Courant()
     LigneDeCredit = 100,
     Titulaire = p1
 };
-Console.WriteLine(c1.LigneDeCredit);
-c1.Depot(500);
-Console.WriteLine(c1.Solde);
+Banque b1 = new Banque()
+{
+    Nom = "Belfius"
+};
+b1.Ajouter(c1);
+b1["00001"].Depot(500);
+Console.WriteLine(b1["00001"].Solde);
 Console.WriteLine("__________________________");
-c1.Retrait(600);
-c1.Depot(1000);
-Console.WriteLine(c1.Solde);
+b1["00001"].Retrait(600);
+b1["00001"].Depot(1000);
+Console.WriteLine(b1["00001"].Solde);
 Console.WriteLine("__________________________");
+foreach(KeyValuePair<string,Courant> kvp in b1.Comptes)
+{
+    Console.WriteLine(kvp.Key + " | " + kvp.Value.Titulaire.Prenom);
+}

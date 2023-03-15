@@ -10,9 +10,7 @@ namespace Devops_C_OO.Demo.Models
     {
         Pv,
         Force,
-        Magie,
         Defence,
-        Resistance,
         Vitesse,
     }
     public class Stats

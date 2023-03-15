@@ -1,13 +1,30 @@
 ﻿using Devops_C_OO.Demo.Models;
-Personnage p1 = new Personnage();
-p1.Name = "Dante";
-p1.Stats[StatType.Pv] = 20;
-p1.Stats[StatType.Force] = 10;
-p1.Stats[StatType.Vitesse] = 100;
-Personnage p2 = new Personnage();
-p2.Stats[StatType.Pv] = 20;
-p2.Stats[StatType.Force] = 10;
-p2.Name = "Vergil";
-p1.Frapper(p2);
-Console.WriteLine(p2.Stats[StatType.Pv]);
-Console.WriteLine(p1.Name);
+Personnage p1 = new Personnage()
+{
+    Name = "Dante",
+};
+p1.GenerateRandomStat();
+Personnage p2 = new Personnage()
+{
+    Name = "Vergil",
+};
+p2.GenerateRandomStat();
+Personnage p3 = new Personnage()
+{
+    Name = "Toto",
+};
+p3.GenerateRandomStat();
+Console.WriteLine(p1);
+Console.WriteLine("____________________________________");
+Console.WriteLine(p2);
+Console.WriteLine("____________________________________");
+Console.WriteLine(p1);
+Console.WriteLine("____________________________________");
+Console.WriteLine(p2);
+Console.WriteLine("____________________________________");
+Personnage fusion = p1 + p2;
+fusion.Frapper(p3);
+Console.WriteLine(fusion);
+Console.WriteLine("____________________________________");
+Console.WriteLine(p3);
+Console.WriteLine("____________________________________");
