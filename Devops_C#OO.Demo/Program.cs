@@ -1,0 +1,12 @@
+﻿using Devops_C_OO.Demo.Models;
+Personnage p1 = new Personnage();
+p1.Name = "Dante";
+p1.Pv = 20;
+p1.Force = 10;
+Personnage p2 = new Personnage();
+p2.Pv = 20;
+p2.Force = 10;
+p2.Name = "Vergil";
+p1.Frapper(p2);
+Console.WriteLine(p2.Pv);
+Console.WriteLine(p1.Name);
