@@ -61,6 +61,12 @@ namespace Devops_C_OO.Exercice.Models
             Solde += montant;
         }
 
+        public static decimal operator +(decimal solde,Courant c)
+        {
+            if (c is null) 
+                return solde;
+            return solde + (c.Solde < 0 ? 0 : c.Solde);
+        }
         #endregion
     }
 }

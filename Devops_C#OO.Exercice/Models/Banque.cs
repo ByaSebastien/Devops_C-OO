@@ -33,5 +33,15 @@ namespace Devops_C_OO.Exercice.Models
         {
             Comptes.Remove(numero);
         }
+        public decimal AvoirDesComptes(Personne p)
+        {
+            decimal avoir = 0;
+            foreach(KeyValuePair<string,Courant> kvp in Comptes)
+            {
+                if (p == kvp.Value.Titulaire)
+                    avoir = avoir + kvp.Value;
+            }
+            return avoir;
+        }
     }
 }
