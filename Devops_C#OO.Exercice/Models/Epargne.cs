@@ -12,6 +12,7 @@ namespace Devops_C_OO.Exercice.Models
 
         public DateTime DateDernierRetrait { get; set; }
 
+
         #endregion
 
         #region Methodes
@@ -22,6 +23,10 @@ namespace Devops_C_OO.Exercice.Models
             base.Retrait(montant);
             if (soldePrecedent != Solde)
                 DateDernierRetrait = DateTime.Now;
+        }
+        protected override decimal CalculInteret()
+        {
+            return Solde * .045M;
         }
 
         #endregion

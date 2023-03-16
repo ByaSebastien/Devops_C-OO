@@ -37,4 +37,7 @@ foreach (Personnage p in personnages)
     //        break;
     //}
 }
+personnages.Add((Hero)personnages[0] + (Hero)personnages[2]);
+Console.WriteLine(personnages[3]);
 Console.WriteLine(boss);
+Console.WriteLine(Personnage.CurrentId);

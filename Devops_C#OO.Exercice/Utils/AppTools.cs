@@ -40,31 +40,37 @@ namespace Devops_C_OO.Exercice.Utils
             do
             {
                 choixCrud = Menu(Menus.CrudMenu, 5);
-                switch (choixCrud)
+                try
                 {
-                    case 0:
-                        Console.WriteLine("Au revoir.");
-                        return;
-                    case 1:
-                        _appService.GetAll(banque);
-                        break;
-                    case 2:
-                        _appService.Rechercher(banque);
-                        break;
-                    case 3:
-                        _appService.Add(banque);
-                        break;
-                    case 4:
-                        _appService.Update(banque);
-                        break;
-                    case 5:
-                        _appService.Delete(banque);
-                        break;
-                    default:
-                        Console.WriteLine("Error.");
-                        return;
+                    switch (choixCrud)
+                    {
+                        case 0:
+                            Console.WriteLine("Au revoir.");
+                            return;
+                        case 1:
+                            _appService.GetAll(banque);
+                            break;
+                        case 2:
+                            _appService.Rechercher(banque);
+                            break;
+                        case 3:
+                            _appService.Add(banque);
+                            break;
+                        case 4:
+                            _appService.Update(banque);
+                            break;
+                        case 5:
+                            _appService.Delete(banque);
+                            break;
+                        default:
+                            Console.WriteLine("Error.");
+                            return;
+                    }
+                }catch(Exception ex) 
+                { 
+                    Console.WriteLine("Une erreur s'est produite");
                 }
-                Console.ReadKey();
+                    Console.ReadKey();
             } while (choixCrud != 0);
         }
         public static int Menu(string menu, int limit)

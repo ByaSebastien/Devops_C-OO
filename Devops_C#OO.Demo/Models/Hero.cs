@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Devops_C_OO.Demo.Extentions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace Devops_C_OO.Demo.Models
         {
             Console.WriteLine("Fuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu Sion!");
             Hero fusion = new Hero();
-            fusion.Name = p1.Name.Substring(0, 2) + p2.Name.Substring(p2.Name.Length - 2, 2);
+            fusion.Name = p1.Name.ConcatFusion(p2.Name);
             fusion.Stats[StatType.Pv] = p1.Stats[StatType.Pv] + p2.Stats[StatType.Pv];
             fusion.Stats[StatType.Force] = p1.Stats[StatType.Force] + p2.Stats[StatType.Force];
             fusion.Stats[StatType.Defence] = p1.Stats[StatType.Defence] + p2.Stats[StatType.Defence];

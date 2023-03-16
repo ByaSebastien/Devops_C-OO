@@ -38,6 +38,15 @@ namespace Devops_C_OO.Exercice.Models
         {
             base.Retrait(montant,LigneDeCredit);
         }
+        public override string ToString()
+        {
+            return base.ToString() + $"\nLigne de crédit : {LigneDeCredit}";
+        }
+
+        protected override decimal CalculInteret()
+        {
+            return Solde * (Solde < 0 ? .0975M : .03M);
+        }
 
         #endregion
     }

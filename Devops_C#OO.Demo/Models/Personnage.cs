@@ -9,6 +9,12 @@ namespace Devops_C_OO.Demo.Models
 {
     public abstract class Personnage
     {
+        public static int CurrentId = 1;
+        public Personnage() 
+        { 
+            Id = CurrentId++;
+        }
+        public int Id { get; set; }
         public int Pv
         {
             get
@@ -37,7 +43,8 @@ namespace Devops_C_OO.Demo.Models
             return $"Pv : {Pv}\n" +
                    $"Force : {Stats[StatType.Force]}\n" +
                    $"Defence : {Stats[StatType.Defence]}\n" +
-                   $"Vitesse : {Stats[StatType.Vitesse]}\n";
+                   $"Vitesse : {Stats[StatType.Vitesse]}\n" +
+                   $"Id : {Id}\n";
         }
     }
 }

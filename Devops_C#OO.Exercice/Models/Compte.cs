@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Devops_C_OO.Exercice.Models
 {
-    public class Compte
+    public abstract class Compte
     {
         #region Propriétés
 
@@ -46,11 +46,25 @@ namespace Devops_C_OO.Exercice.Models
             Solde += montant;
         }
 
+        protected abstract decimal CalculInteret();
+
+        public void AppliquerInteret()
+        {
+            Solde += CalculInteret();
+        }
+
         public static decimal operator +(decimal solde, Compte c)
         {
             if (c is null)
                 return solde;
             return solde + (c.Solde < 0 ? 0 : c.Solde);
+        }
+
+        public override string ToString()
+        {
+            return $"Titulaire : {Titulaire.Nom} {Titulaire.Prenom}\n" +
+                   $"Numero de compte : {Numero}\n" +
+                   $"Solde : {Solde}";
         }
         #endregion
     }

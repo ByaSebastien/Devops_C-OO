@@ -59,10 +59,9 @@ namespace Devops_C_OO.Exercice.Datas
                 }
             });
             Belfius.Comptes["00003"].Depot(100);
-            Belfius.Ajouter(new Courant()
+            Belfius.Ajouter(new Epargne()
             {
                 Numero = "00004",
-                LigneDeCredit = 1000,
                 Titulaire = new Personne()
                 {
                     Prenom = "Sébastien",
@@ -110,7 +109,6 @@ namespace Devops_C_OO.Exercice.Datas
             Argenta.Ajouter(new Courant()
             {
                 Numero = "00008",
-                LigneDeCredit = 100,
                 Titulaire = new Personne()
                 {
                     Prenom = "Sébastien",
