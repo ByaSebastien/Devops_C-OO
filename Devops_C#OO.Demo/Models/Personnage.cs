@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Devops_C_OO.Demo.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -30,10 +31,10 @@ namespace Devops_C_OO.Demo.Models
         public void GenerateRandomStat()
         {
             Random random = new Random();
-            Stats[StatType.Pv] = random.Next(10,20);
-            Stats[StatType.Force] = random.Next(20, 25);
-            Stats[StatType.Defence] = random.Next(5, 15);
-            Stats[StatType.Vitesse] = random.Next(10, 50);
+            Stats[StatType.Pv] = Dice.Throws(DiceType.D10,5,3);
+            Stats[StatType.Force] = Dice.Throws(DiceType.D10, 5, 3);
+            Stats[StatType.Defence] = Dice.Throws(DiceType.D10, 5, 3);
+            Stats[StatType.Vitesse] = Dice.Throws(DiceType.D10, 5, 3);
         }
 
         

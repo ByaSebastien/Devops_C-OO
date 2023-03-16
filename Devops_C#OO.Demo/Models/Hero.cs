@@ -1,4 +1,5 @@
 ﻿using Devops_C_OO.Demo.Extentions;
+using Devops_C_OO.Demo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Devops_C_OO.Demo.Models
         public override void Frapper(Personnage p)
         {
             Console.WriteLine($"{Name} attaque");
-            p.Stats[StatType.Pv] -= Stats[StatType.Force];
+            p.Stats[StatType.Pv] -= Stats[StatType.Force] + Dice.Throws(DiceType.D6);
         }
         public static Hero operator +(Hero p1, Hero p2)
         {

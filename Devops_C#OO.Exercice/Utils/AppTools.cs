@@ -35,7 +35,6 @@ namespace Devops_C_OO.Exercice.Utils
                     Console.WriteLine("Error.");
                     return;
             }
-            Console.WriteLine(banque);
             int choixCrud;
             do
             {
@@ -66,19 +65,21 @@ namespace Devops_C_OO.Exercice.Utils
                             Console.WriteLine("Error.");
                             return;
                     }
-                }catch(Exception ex) 
-                { 
+                }
+                catch (Exception ex)
+                {
                     Console.WriteLine("Une erreur s'est produite");
                 }
-                    Console.ReadKey();
+                Console.ReadKey();
             } while (choixCrud != 0);
         }
-        public static int Menu(string menu, int limit)
+        public static int Menu(string menu, int limit, bool clear = true)
         {
             int choix;
             do
             {
-                Console.Clear();
+                if (clear)
+                    Console.Clear();
                 Console.WriteLine(menu);
             } while (!int.TryParse(Console.ReadLine(), out choix) || choix < 0 || choix > limit);
             Console.Clear();

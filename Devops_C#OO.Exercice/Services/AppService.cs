@@ -41,7 +41,7 @@ namespace Devops_C_OO.Exercice.Services
         {
             GetAll(banque);
             Compte previousCompte = GetOne(banque);
-            Compte newCompte = CompteForm(banque,previousCompte.Numero);
+            Compte newCompte = CompteForm(banque, previousCompte.Numero);
             Console.WriteLine("Vous avez modifié :");
             Console.WriteLine(previousCompte);
             Console.WriteLine("Par le compte suivant : ");
@@ -58,12 +58,11 @@ namespace Devops_C_OO.Exercice.Services
             Compte c = GetOne(banque);
             Console.Clear();
             Console.WriteLine(c);
-            Console.ReadKey();
             int choix;
             do
             {
 
-                choix = AppTools.Menu(Menus.MouvementMenu, 2);
+                choix = AppTools.Menu(Menus.MouvementMenu, 3, false);
                 switch (choix)
                 {
                     case 0:
@@ -75,10 +74,15 @@ namespace Devops_C_OO.Exercice.Services
                     case 2:
                         Retrait(c);
                         break;
+                    case 3:
+                        c.AppliquerInteret();
+                        break;
                     default:
                         Console.WriteLine("Error");
                         break;
                 }
+                Console.Clear();
+                Console.WriteLine(c);
             } while (choix != 0);
         }
 

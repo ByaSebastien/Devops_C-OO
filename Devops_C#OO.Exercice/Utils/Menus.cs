@@ -22,6 +22,7 @@ namespace Devops_C_OO.Exercice.Utils
 
         public static string MouvementMenu = "0 : Quitter\n" +
                                              "1 : Depot\n" +
-                                             "2 : Retrait\n";
+                                             "2 : Retrait\n" +
+                                             "3 : Appliquer interet";
     }
 }
