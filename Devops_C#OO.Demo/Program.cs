@@ -1,30 +1,40 @@
 ﻿using Devops_C_OO.Demo.Models;
-Personnage p1 = new Personnage()
+List<Personnage> personnages = new List<Personnage>()
 {
-    Name = "Dante",
+    new Hero()
+    {
+        Name = "Dante",
+    },
+    new Monstre()
+    {
+        Race = "Toto le malefique",
+    },
+    new Hero()
+    {
+        Name = "Vergil",
+    },
 };
-p1.GenerateRandomStat();
-Personnage p2 = new Personnage()
+Monstre boss = new Monstre();
+boss.Race = "Le mechant";
+boss.Stats[StatType.Pv] = 100;
+boss.Stats[StatType.Force] = 100;
+boss.Stats[StatType.Defence] = 100;
+boss.Stats[StatType.Vitesse] = 100;
+foreach (Personnage p in personnages)
 {
-    Name = "Vergil",
-};
-p2.GenerateRandomStat();
-Personnage p3 = new Personnage()
-{
-    Name = "Toto",
-};
-p3.GenerateRandomStat();
-Console.WriteLine(p1);
-Console.WriteLine("____________________________________");
-Console.WriteLine(p2);
-Console.WriteLine("____________________________________");
-Console.WriteLine(p1);
-Console.WriteLine("____________________________________");
-Console.WriteLine(p2);
-Console.WriteLine("____________________________________");
-Personnage fusion = p1 + p2;
-fusion.Frapper(p3);
-Console.WriteLine(fusion);
-Console.WriteLine("____________________________________");
-Console.WriteLine(p3);
-Console.WriteLine("____________________________________");
+    p.GenerateRandomStat();
+    Console.WriteLine(p);
+    p.Frapper(boss);
+    Console.WriteLine("_______________________________________");
+    //switch (p)
+    //{
+    //    case Hero h:
+    //        h.SeSoigner();
+    //        break;
+    //    case Monstre m:
+    //        m.Frapper(m);
+    //        Console.WriteLine("aaaaaaaaaaaaaa");
+    //        break;
+    //}
+}
+Console.WriteLine(boss);

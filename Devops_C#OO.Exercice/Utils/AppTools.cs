@@ -1,5 +1,6 @@
 ﻿using Devops_C_OO.Exercice.Datas;
 using Devops_C_OO.Exercice.Models;
+using Devops_C_OO.Exercice.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,10 @@ namespace Devops_C_OO.Exercice.Utils
 {
     public class AppTools
     {
+        private AppService _appService = new AppService();
         public void Start()
         {
-            FakeDb db = new FakeDb();
-            db.InitDb();
+            FakeDb.InitDb();
             Banque? banque;
             int choixBanque = Menu(Menus.BankMenu, 3);
             switch (choixBanque)
@@ -22,13 +23,13 @@ namespace Devops_C_OO.Exercice.Utils
                     Console.WriteLine("Au revoir.");
                     return;
                 case 1:
-                    banque = db.Belfius;
+                    banque = FakeDb.Belfius;
                     break;
                 case 2:
-                    banque = db.BNP;
+                    banque = FakeDb.BNP;
                     break;
                 case 3:
-                    banque = db.Argenta;
+                    banque = FakeDb.Argenta;
                     break;
                 default:
                     Console.WriteLine("Error.");
@@ -45,28 +46,28 @@ namespace Devops_C_OO.Exercice.Utils
                         Console.WriteLine("Au revoir.");
                         return;
                     case 1:
-                        foreach (KeyValuePair<string, Courant> kvp in banque.Comptes)
-                        {
-                            Console.WriteLine(kvp.Key + " : " + kvp.Value.Titulaire.Prenom);
-                            Console.WriteLine("__________________________________________");
-                        }
-                        Console.ReadKey();
+                        _appService.GetAll(banque);
                         break;
                     case 2:
+                        _appService.Rechercher(banque);
                         break;
                     case 3:
+                        _appService.Add(banque);
                         break;
                     case 4:
+                        _appService.Update(banque);
                         break;
                     case 5:
+                        _appService.Delete(banque);
                         break;
                     default:
                         Console.WriteLine("Error.");
                         return;
                 }
+                Console.ReadKey();
             } while (choixCrud != 0);
         }
-        public int Menu(string menu, int limit)
+        public static int Menu(string menu, int limit)
         {
             int choix;
             do

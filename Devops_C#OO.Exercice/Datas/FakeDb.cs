@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace Devops_C_OO.Exercice.Datas
 {
-    public class FakeDb
+    public static class FakeDb
     {
-        public Banque Belfius = new Banque()
+        public static Banque Belfius = new Banque()
         {
             Nom = "Belfius",
         };
-        public Banque BNP = new Banque()
+        public static Banque BNP = new Banque()
         {
             Nom = "BNP Paribas",
         };
-        public Banque Argenta = new Banque()
+        public static Banque Argenta = new Banque()
         {
             Nom = "Argenta",
         };
-        public void InitDb()
+        public static void InitDb()
         {
             Belfius.Ajouter(new Courant()
             {

@@ -8,24 +8,24 @@ namespace Devops_C_OO.Exercice.Models
 {
     public class Banque
     {
-        private Dictionary<string, Courant> _comptes = new Dictionary<string, Courant>();
+        private Dictionary<string, Compte> _comptes = new Dictionary<string, Compte>();
         public string Nom { get; set; }
-        public Dictionary<string, Courant> Comptes
+        public Dictionary<string, Compte> Comptes
         {
             get
             {
                 return _comptes;
             }
         }
-        public Courant this[string numero]
+        public Compte this[string numero]
         {
             get
             {
-                Comptes.TryGetValue(numero, out Courant c);
+                Comptes.TryGetValue(numero, out Compte c);
                 return c;
             }
         }
-        public void Ajouter(Courant c)
+        public void Ajouter(Compte c)
         {
             Comptes.Add(c.Numero, c);
         }
@@ -36,7 +36,7 @@ namespace Devops_C_OO.Exercice.Models
         public decimal AvoirDesComptes(Personne p)
         {
             decimal avoir = 0;
-            foreach(KeyValuePair<string,Courant> kvp in Comptes)
+            foreach(KeyValuePair<string,Compte> kvp in Comptes)
             {
                 if (p == kvp.Value.Titulaire)
                     avoir = avoir + kvp.Value;
