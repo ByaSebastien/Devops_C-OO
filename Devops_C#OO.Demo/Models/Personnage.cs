@@ -11,9 +11,14 @@ namespace Devops_C_OO.Demo.Models
     public abstract class Personnage
     {
         public static int CurrentId = 1;
-        public Personnage() 
-        { 
+        public Personnage()
+        {
             Id = CurrentId++;
+            Stats = new Stats();
+        }
+        public Personnage(DiceType dice) : this()
+        { 
+            GenerateRandomStat(dice);
         }
         public int Id { get; set; }
         public int Pv
@@ -23,18 +28,18 @@ namespace Devops_C_OO.Demo.Models
                 return Stats[StatType.Pv];
             }
         } 
-        public Stats Stats { get; set; } = new Stats();
+        public Stats Stats { get; set; }
 
 
         public abstract void Frapper(Personnage p);
 
-        public void GenerateRandomStat()
+        public void GenerateRandomStat(DiceType dice)
         {
             Random random = new Random();
-            Stats[StatType.Pv] = Dice.Throws(DiceType.D10,5,3);
-            Stats[StatType.Force] = Dice.Throws(DiceType.D10, 5, 3);
-            Stats[StatType.Defence] = Dice.Throws(DiceType.D10, 5, 3);
-            Stats[StatType.Vitesse] = Dice.Throws(DiceType.D10, 5, 3);
+            Stats[StatType.Pv] = Dice.Throws(dice,5,3);
+            Stats[StatType.Force] = Dice.Throws(dice, 5, 3);
+            Stats[StatType.Defence] = Dice.Throws(dice, 5, 3);
+            Stats[StatType.Vitesse] = Dice.Throws(dice, 5, 3);
         }
 
         

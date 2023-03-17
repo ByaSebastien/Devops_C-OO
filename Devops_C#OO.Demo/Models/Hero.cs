@@ -10,6 +10,10 @@ namespace Devops_C_OO.Demo.Models
 {
     public class Hero : Personnage
     {
+        public Hero(string name) : base(DiceType.D10)
+        {
+            Name = name;
+        }
         public string Name { get; set; }
         public void SeSoigner()
         {
@@ -23,8 +27,7 @@ namespace Devops_C_OO.Demo.Models
         public static Hero operator +(Hero p1, Hero p2)
         {
             Console.WriteLine("Fuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu Sion!");
-            Hero fusion = new Hero();
-            fusion.Name = p1.Name.ConcatFusion(p2.Name);
+            Hero fusion = new Hero(p1.Name.ConcatFusion(p2.Name));
             fusion.Stats[StatType.Pv] = p1.Stats[StatType.Pv] + p2.Stats[StatType.Pv];
             fusion.Stats[StatType.Force] = p1.Stats[StatType.Force] + p2.Stats[StatType.Force];
             fusion.Stats[StatType.Defence] = p1.Stats[StatType.Defence] + p2.Stats[StatType.Defence];
