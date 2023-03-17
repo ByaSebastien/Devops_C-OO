@@ -10,8 +10,18 @@ namespace Devops_C_OO.Exercice.Models
     {
         #region Propriétés
 
-        public DateTime DateDernierRetrait { get; set; }
+        public DateTime DateDernierRetrait { get; private set; }
 
+
+        #endregion
+
+        #region Constructeurs
+
+        public Epargne(string numero, Personne titulaire) : this(numero, titulaire, 0) { }
+        public Epargne(string numero, Personne titulaire, decimal solde) : base(numero, titulaire, solde) 
+        {
+            DateDernierRetrait = DateTime.Now;
+        }
 
         #endregion
 

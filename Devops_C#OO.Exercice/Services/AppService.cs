@@ -37,21 +37,6 @@ namespace Devops_C_OO.Exercice.Services
             Console.WriteLine(c);
         }
 
-        public void Update(Banque banque)
-        {
-            GetAll(banque);
-            Compte previousCompte = GetOne(banque);
-            Compte newCompte = CompteForm(banque, previousCompte.Numero);
-            Console.WriteLine("Vous avez modifié :");
-            Console.WriteLine(previousCompte);
-            Console.WriteLine("Par le compte suivant : ");
-            Console.WriteLine(newCompte);
-            banque[previousCompte.Numero].Numero = newCompte.Numero;
-            if (banque[previousCompte.Numero] is Courant c && newCompte is Courant c2)
-                c.LigneDeCredit = c2.LigneDeCredit;
-            banque[previousCompte.Numero].Titulaire = newCompte.Titulaire;
-        }
-
         public void Rechercher(Banque banque)
         {
             GetAll(banque);
@@ -102,28 +87,18 @@ namespace Devops_C_OO.Exercice.Services
         {
             Console.Clear();
             Compte c;
-            if (numero is null)
+            int choix;
+            do
             {
-                int choix;
-                do
-                {
 
-                    Console.WriteLine("1 : Compte courant\n" +
-                                      "2 : Compte épargne");
-                } while (!int.TryParse(Console.ReadLine(), out choix) || choix < 1 || choix > 1);
-                c = choix == 1 ? new Courant() : new Epargne();
-            }
-            else
-            {
-                b.Comptes.TryGetValue(numero, out Compte prev);
-                c = prev is Courant ? new Courant() : new Epargne();
-            }
-            Personne t = new Personne();
+                Console.WriteLine("1 : Compte courant\n" +
+                                  "2 : Compte épargne");
+            } while (!int.TryParse(Console.ReadLine(), out choix) || choix < 1 || choix > 2);
             Console.WriteLine("Titulaire du compte : ");
             Console.Write("Nom : ");
-            t.Nom = Console.ReadLine();
+            string nom = Console.ReadLine();
             Console.Write("Prenom : ");
-            t.Prenom = Console.ReadLine();
+            string prenom = Console.ReadLine();
             Console.WriteLine("Date de naissance");
             Console.Write("Jour : ");
             int jour = int.Parse(Console.ReadLine());
@@ -131,21 +106,20 @@ namespace Devops_C_OO.Exercice.Services
             int mois = int.Parse(Console.ReadLine());
             Console.Write("Année : ");
             int annee = int.Parse(Console.ReadLine());
-            t.DateNaiss = new DateTime(annee, mois, jour);
-            c.Titulaire = t;
-            if (numero is null)
+            DateTime dateNaiss = new DateTime(annee, mois, jour);
+            Personne t = new Personne(prenom, nom, dateNaiss);
+            Console.Write("Numéro de compte : ");
+            string newNumero = Console.ReadLine();
+            if (choix == 1)
             {
-                Console.Write("Numéro de compte : ");
-                c.Numero = Console.ReadLine();
+                Console.Write("Ligne de crédit : ");
+                decimal ligneDeCredit = decimal.Parse(Console.ReadLine());
+                c = new Courant(t, newNumero, ligneDeCredit);
             }
             else
-                c.Numero = numero;
-            Console.Write("Ligne de crédit : ");
-            if (c is Courant co)
-                co.LigneDeCredit = decimal.Parse(Console.ReadLine());
+                c = new Epargne(newNumero, t);
             return c;
         }
-
         public void Delete(Banque banque)
         {
             GetAll(banque);

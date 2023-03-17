@@ -17,8 +17,7 @@ namespace Devops_C_OO.Exercice.Utils
                                         "1 : Lister\n" +
                                         "2 : Rechercher\n" +
                                         "3 : Ajouter\n" +
-                                        "4 : Modifier\n" +
-                                        "5 : Supprimer";
+                                        "4 : Supprimer";
 
         public static string MouvementMenu = "0 : Quitter\n" +
                                              "1 : Depot\n" +

@@ -14,6 +14,17 @@ namespace Devops_C_OO.Exercice.Models
 
         #endregion
 
+        #region Constructeurs
+
+        public Courant(string numero,Personne titulaire) : base(numero, titulaire) { }
+        public Courant(string numero, Personne titulaire, decimal solde) : base(numero, titulaire, solde) { }
+        public Courant(Personne titulaire, string numero, decimal ligneDeCredit) : base(numero,titulaire) 
+        { 
+            LigneDeCredit = ligneDeCredit;
+        }
+
+        #endregion
+
         #region Propriétés
 
         public decimal LigneDeCredit 

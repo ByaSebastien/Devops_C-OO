@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Devops_C_OO.Exercice.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,28 @@ using System.Threading.Tasks;
 
 namespace Devops_C_OO.Exercice.Models
 {
-    public abstract class Compte
+    public abstract class Compte : IBanker,ICustomer
     {
         #region Propriétés
 
-        public string Numero { get; set; }
+        public string Numero { get; private set; }
         public decimal Solde { get; private set; }
-        public Personne Titulaire { get; set; }
+        public Personne Titulaire { get; private set; }
+
+        #endregion
+
+        #region Constructeurs
+
+        public Compte(string numero, Personne titulaire)
+        {
+            Numero = numero;
+            Titulaire = titulaire;
+        }
+        public Compte(string numero, Personne titulaire, decimal solde) : this(numero, titulaire)
+        {
+            Solde = solde;
+        }
+
 
         #endregion
 

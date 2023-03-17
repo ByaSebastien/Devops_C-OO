@@ -38,7 +38,7 @@ namespace Devops_C_OO.Exercice.Utils
             int choixCrud;
             do
             {
-                choixCrud = Menu(Menus.CrudMenu, 5);
+                choixCrud = Menu(Menus.CrudMenu, 4);
                 try
                 {
                     switch (choixCrud)
@@ -56,9 +56,6 @@ namespace Devops_C_OO.Exercice.Utils
                             _appService.Add(banque);
                             break;
                         case 4:
-                            _appService.Update(banque);
-                            break;
-                        case 5:
                             _appService.Delete(banque);
                             break;
                         default:
@@ -66,7 +63,7 @@ namespace Devops_C_OO.Exercice.Utils
                             return;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Console.WriteLine("Une erreur s'est produite");
                 }
