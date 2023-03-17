@@ -1,7 +1,9 @@
-﻿using Devops_C_OO.Exercice.Interfaces;
+﻿using Devops_C_OO.Exercice.Exceptions;
+using Devops_C_OO.Exercice.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +23,7 @@ namespace Devops_C_OO.Exercice.Models
 
         public Compte(string numero, Personne titulaire)
         {
-            Numero = numero;
+            Numero = GenerateBBAN();
             Titulaire = titulaire;
         }
         public Compte(string numero, Personne titulaire, decimal solde) : this(numero, titulaire)
@@ -44,10 +46,10 @@ namespace Devops_C_OO.Exercice.Models
         }
         public void Retrait(decimal montant, decimal ligneDeCredit)
         {
-            if(montant <= 0)
-                return;
+            if (montant < 0)
+                throw new ArgumentOutOfRangeException("Le montant ne peut être négatif");
             if (Solde - montant < -ligneDeCredit)
-                return;
+                throw new SoldeInsuffisantException();
             Solde -= montant;
         }
 
@@ -58,7 +60,7 @@ namespace Devops_C_OO.Exercice.Models
         public void Depot(decimal montant)
         {
             if (montant < 0)
-                return;
+                throw new ArgumentOutOfRangeException("Le montant ne peut être négatif");
             Solde += montant;
         }
 
@@ -81,6 +83,27 @@ namespace Devops_C_OO.Exercice.Models
             return $"Titulaire : {Titulaire.Nom} {Titulaire.Prenom}\n" +
                    $"Numero de compte : {Numero}\n" +
                    $"Solde : {Solde}";
+        }
+        
+        public string GenerateBBAN()
+        {
+            Random random = new Random();
+            string bban = "";
+            bban += random.Next(100, 1000).ToString();
+            for (int i = 0; i < 7; i++)
+            {
+                bban += random.Next(0,10).ToString();
+            }
+            int checkDigits = CalculateCheckDigits(bban);
+            bban += checkDigits.ToString("00");
+
+            return bban;
+        }
+
+        private int CalculateCheckDigits(string bban)
+        {
+            bban += "111400";
+            return (int)(98 - (long.Parse(bban) % 97));
         }
         #endregion
     }

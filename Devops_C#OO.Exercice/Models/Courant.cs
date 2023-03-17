@@ -36,7 +36,7 @@ namespace Devops_C_OO.Exercice.Models
             set
             {
                 if (value < 0)
-                    return;
+                    throw new InvalidOperationException("Ligne de credit doit être positive");
                 _ligneDeCredit = value;
             }
         }
