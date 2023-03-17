@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Devops_C_OO.Demo.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,8 @@ namespace Devops_C_OO.Demo.Models
             }
             set 
             {
+                if (value < 0)
+                    throw new StatNegativeException("Coucou");
                 if(!StatList.ContainsKey(type))
                     StatList.Add(type, 0);
                 StatList[type] = value; 
