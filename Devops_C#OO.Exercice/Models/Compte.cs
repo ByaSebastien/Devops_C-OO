@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace Devops_C_OO.Exercice.Models
 {
+    public delegate void PassageEnNegatifDelegate(Compte c);
     public abstract class Compte : IBanker,ICustomer
     {
-        #region Propriétés
+        public event Action<Compte> PassageEnNegatifEvent;
         public event Action SoldeCritiqueEvent;
+        #region Propriétés
         public string Numero { get; private set; }
         public decimal Solde { get; private set; }
         public Personne Titulaire { get; private set; }
@@ -24,7 +26,7 @@ namespace Devops_C_OO.Exercice.Models
 
         public Compte(string numero, Personne titulaire)
         {
-            Numero = GenerateBBAN();
+            Numero = numero;
             Titulaire = titulaire;
             SoldeCritiqueEvent += Alert;
         }
@@ -91,27 +93,6 @@ namespace Devops_C_OO.Exercice.Models
                    $"Numero de compte : {Numero}\n" +
                    $"Solde : {Solde}";
         }
-        
-        public string GenerateBBAN()
-        {
-            Random random = new Random();
-            string bban = "";
-            bban += random.Next(100, 1000).ToString();
-            for (int i = 0; i < 7; i++)
-            {
-                bban += random.Next(0,10).ToString();
-            }
-            int checkDigits = CalculateCheckDigits(bban);
-            bban += checkDigits.ToString("00");
-
-            return bban;
-        }
-
-        private int CalculateCheckDigits(string bban)
-        {
-            bban += "111400";
-            return (int)(98 - (long.Parse(bban) % 97));
-        }
         #endregion
         public void Alert()
         {
@@ -120,6 +101,10 @@ namespace Devops_C_OO.Exercice.Models
         public void RaiseSoldeCritiqueEvent()
         {
             SoldeCritiqueEvent?.Invoke();
+        }
+        public void RaisePassageEnNegatifEvent()
+        {
+            PassageEnNegatifEvent?.Invoke(this);
         }
     }
 }

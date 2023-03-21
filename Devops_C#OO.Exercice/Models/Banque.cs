@@ -28,6 +28,7 @@ namespace Devops_C_OO.Exercice.Models
         public void Ajouter(Compte c)
         {
             Comptes.Add(c.Numero, c);
+            c.PassageEnNegatifEvent += PassageEnNegatifAction;
         }
         public void Supprimer(string numero)
         {
@@ -42,6 +43,10 @@ namespace Devops_C_OO.Exercice.Models
                     avoir = avoir + kvp.Value;
             }
             return avoir;
+        }
+        private void PassageEnNegatifAction(Compte c)
+        {
+            Console.WriteLine($"Le compte numero {c.Numero} est passé en négatif.");
         }
     }
 }

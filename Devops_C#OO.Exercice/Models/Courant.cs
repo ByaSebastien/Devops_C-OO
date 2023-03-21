@@ -47,7 +47,10 @@ namespace Devops_C_OO.Exercice.Models
 
         public override void Retrait(decimal montant)
         {
+            decimal old = Solde;
             base.Retrait(montant,LigneDeCredit);
+            if (old > 0 && Solde < 0)
+                RaisePassageEnNegatifEvent();
         }
         public override string ToString()
         {
