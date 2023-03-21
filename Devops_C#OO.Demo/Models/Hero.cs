@@ -29,7 +29,10 @@ namespace Devops_C_OO.Demo.Models
         public override void Frapper(Personnage p)
         {
             Console.WriteLine($"{Name} attaque");
-            p.Stats[StatType.Pv] -= Stats[StatType.Force] + Dice.Throws(DiceType.D6);
+            p.Stats[StatType.Pv] -= (Stats[StatType.Force] + Dice.Throws(DiceType.D6)) / 2;
+            Console.WriteLine($"PV : {Pv}  |  Pv : {p.Pv}");
+            if (!p.IsAlive)
+                p.RaiseDieEvent();
         }
         public static Hero operator +(Hero p1, Hero p2)
         {
@@ -44,6 +47,10 @@ namespace Devops_C_OO.Demo.Models
         public override string ToString()
         {
             return $"{Name}:\n" + base.ToString();
+        }
+        public void Loot (Personnage p)
+        {
+            Console.WriteLine($"Mon personnage : {Id} loot le monstre : {p.Id}");
         }
     }
 }

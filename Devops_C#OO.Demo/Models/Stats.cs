@@ -29,13 +29,16 @@ namespace Devops_C_OO.Demo.Models
                     return 0;
                 return stat;
             }
-            set 
+            set
             {
                 if (value < 0)
-                    throw new StatNegativeException("Coucou");
-                if(!StatList.ContainsKey(type))
-                    StatList.Add(type, 0);
-                StatList[type] = value; 
+                    StatList[type] = 0;
+                else
+                {
+                    if (!StatList.ContainsKey(type))
+                        StatList.Add(type, 0);
+                    StatList[type] = value;
+                }
             }
         }
     }

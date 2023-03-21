@@ -10,7 +10,9 @@ namespace Devops_C_OO.Demo.Models
 {
     public abstract class Personnage
     {
+        public event Action<Personnage> OnDieEvent;
         public static int CurrentId = 1;
+        public bool IsAlive => Pv > 0;
         public Personnage()
         {
             Id = CurrentId++;
@@ -51,6 +53,11 @@ namespace Devops_C_OO.Demo.Models
                    $"Defence : {Stats[StatType.Defence]}\n" +
                    $"Vitesse : {Stats[StatType.Vitesse]}\n" +
                    $"Id : {Id}\n";
+        }
+
+        public void RaiseDieEvent()
+        {
+            OnDieEvent?.Invoke(this);
         }
     }
 }

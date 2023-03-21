@@ -12,7 +12,7 @@ namespace Devops_C_OO.Exercice.Models
     public abstract class Compte : IBanker,ICustomer
     {
         #region Propriétés
-
+        public event Action SoldeCritiqueEvent;
         public string Numero { get; private set; }
         public decimal Solde { get; private set; }
         public Personne Titulaire { get; private set; }
@@ -25,6 +25,7 @@ namespace Devops_C_OO.Exercice.Models
         {
             Numero = GenerateBBAN();
             Titulaire = titulaire;
+            SoldeCritiqueEvent += Alert;
         }
         public Compte(string numero, Personne titulaire, decimal solde) : this(numero, titulaire)
         {
@@ -51,6 +52,11 @@ namespace Devops_C_OO.Exercice.Models
             if (Solde - montant < -ligneDeCredit)
                 throw new SoldeInsuffisantException();
             Solde -= montant;
+            if(Solde < 10)
+            {
+                RaiseSoldeCritiqueEvent();
+            }
+
         }
 
         /// <summary>
@@ -106,5 +112,13 @@ namespace Devops_C_OO.Exercice.Models
             return (int)(98 - (long.Parse(bban) % 97));
         }
         #endregion
+        public void Alert()
+        {
+            Console.WriteLine("Solde critique");
+        }
+        public void RaiseSoldeCritiqueEvent()
+        {
+            SoldeCritiqueEvent?.Invoke();
+        }
     }
 }

@@ -24,21 +24,23 @@ using Devops_C_OO.Demo.Models;
 //{
 //    Console.WriteLine(ex.Message);
 //}
-Hero hero = new Hero("Toto");
-hero.Competence1 = Competences.AttaqueMelee;
-hero.Competence2 = Competences.BouleDeFeu;
-hero.Combo = Competences.AttaqueMelee;
-hero.Combo += Competences.BouleDeFeu;
-hero.Combo = Competences.AttaqueMelee;
-hero.test = (int x,int y) => (float)x / y;
-hero.Competence1();
-Console.WriteLine("____________________________");
-hero.Competence2();
-Console.WriteLine("____________________________");
-hero.Combo?.Invoke();
-Console.WriteLine("____________________________");
-Console.WriteLine(hero.test(5 , 3));
-float a = hero.test(5 , 3);
+
+//Hero hero = new Hero("Toto");
+//hero.Competence1 = Competences.AttaqueMelee;
+//hero.Competence2 = Competences.BouleDeFeu;
+//hero.Combo = Competences.AttaqueMelee;
+//hero.Combo += Competences.BouleDeFeu;
+//hero.Combo = Competences.AttaqueMelee;
+//hero.test = (int x,int y) => (float)x / y;
+//hero.Competence1();
+//Console.WriteLine("____________________________");
+//hero.Competence2();
+//Console.WriteLine("____________________________");
+//hero.Combo?.Invoke();
+//Console.WriteLine("____________________________");
+//Console.WriteLine(hero.test(5 , 3));
+//float a = hero.test(5 , 3);
+
 //foreach (Personnage p in personnages)
 //{
 //    Console.WriteLine(p);
@@ -89,3 +91,14 @@ float a = hero.test(5 , 3);
 //}
 //    }
 //}
+
+Hero h = new Hero("Dante");
+Monstre m = new Monstre("Toto");
+m.OnDieEvent += h.Loot;
+
+while(h.IsAlive && m.IsAlive)
+{
+    h.Frapper(m);
+    if(m.IsAlive)
+        m.Frapper(h);
+}
