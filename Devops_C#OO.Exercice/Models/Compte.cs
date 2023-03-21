@@ -17,6 +17,7 @@ namespace Devops_C_OO.Exercice.Models
         public decimal Solde { get; private set; }
         public Personne Titulaire { get; private set; }
 
+
         #endregion
 
         #region Constructeurs
