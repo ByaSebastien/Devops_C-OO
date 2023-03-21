@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace Devops_C_OO.Demo.Models
 {
+    //public delegate void Competence ();
     public class Hero : Personnage
     {
+        public Action Competence1;
+        public Func<int,int,float> test;
+        //public Competence Competence1;
+        public Action Competence2;
+        public Action Combo;
+        
         public Hero(string name) : base(DiceType.D10)
         {
             Name = name;
